@@ -1,0 +1,22 @@
+stages:
+  - build
+  - destroy
+
+build-job:
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: ['']
+  stage: build
+  script:
+    - kubectl apply -f nginx_exemple.yaml --validate=false
+
+destroy-job:
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: ['']
+  stage: destroy
+  script:
+    - kubectl delete -f nginx_exemple.yaml
+  when: manual
+
+
